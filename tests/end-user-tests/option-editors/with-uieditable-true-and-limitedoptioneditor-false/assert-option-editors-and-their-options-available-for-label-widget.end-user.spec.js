@@ -1,0 +1,54 @@
+/*!
+ * @AIMMS_FILE=models/Islands with new table MapV2/Islands.aimms
+ * @WEBUI_MODE=end_user
+ */
+
+scenario(
+	"As an end user, with Application-Settings UI-Editable set to 1 and Limited-Option-Editor set to 0. On Label Widget Settings Option Editor, asserting different category tabs available and options available on each of these categories.",
+	() => {
+		loadPage("Main Project/Second Page");
+
+		// Verify that the Kebab menu is present
+		findWidget("Lab1")
+			.isKebabMenuPresent()
+			.should.eql(true);
+
+		// Click on Label Widget Settings, and assert the info on Option Editor.
+		findWidget("Lab1")
+			.openOptionDialog()
+			.getOptionEditorDetails()
+			.should.eql(labelWidgetOptions());
+
+		// For the Label Widget Settings Option Editor, assert the header and default opened tab title.
+		findWidget("Lab1")
+			.openOptionDialog()
+			.getOptionEditorHeaderDetails()
+			.should.eql({
+				"OptionDialog Header": "Lab1",
+				"OptionEditorTab Title": "Miscellaneous",
+			});
+
+		// Assert options available on "Miscellaneous" option editor and their data
+		findWidget("Lab1")
+			.openMiscellaneousOptionEditor()
+			.getOptions()
+			.should.include.something.like([
+				{
+					Name: "contents",
+					NewOptionType: true,
+					Value: "Same Linechart as above...",
+					Index: 0,
+					"Option-Entry Action Tooltip": "Set to initial",
+					"Option-Entry Action Icon": "icon-close",
+				},
+				{
+					Name: "Visible",
+					NewOptionType: false,
+					Value: "LabelVisible",
+					Index: 1,
+					"Option-Entry Action Tooltip": "",
+					"Option-Entry Action Icon": "",
+				},
+			]);
+	}
+);

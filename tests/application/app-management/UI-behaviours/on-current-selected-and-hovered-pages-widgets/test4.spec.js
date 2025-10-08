@@ -1,0 +1,721 @@
+/*!
+ * @AIMMS_FILE=models/PageV2/Vliegtuigjes/Vliegtuigjes.aimms
+ */
+
+scenario(
+	"While we are navigated to different pages of SidePanel page-type, asserting CSS properties of pages and widgets seen on App Manager.",
+	() => {
+		loadPage("Main Project/SidePanels/KPIs");
+
+		// Open the App Manager.
+		openAppManager();
+
+		// Assert the Styles of App Manager Tree.
+		getAppManager()
+			.getAppManagerStylesInfo()
+			.should.eql([
+				{
+					Name: "Main Project",
+					Slug: "main_project",
+					NodeType: "Pagev2-grid",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveGrey100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite80.rgbaWithWhitespace,
+				},
+				{
+					Name: "home",
+					Slug: "home",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Another Page",
+					Slug: "another_page",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Button Page",
+					Slug: "button_page",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Book Corner",
+					Slug: "wh_subpage",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Test Page",
+					Slug: "test_page",
+					NodeType: "Pagev2-grid",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "SidePanels",
+					Slug: "sidepanels_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Widgets on page",
+					Slug: "sidepanels_1-widget-container",
+					NodeType: "Container",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "KPIs",
+					Slug: "kpis_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: true,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite40.rgbaWithWhitespace,
+				},
+				{
+					Name: "Filters",
+					Slug: "filters_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Help",
+					Slug: "help_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "StoreFocus",
+					Slug: "storefocus_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "MKG",
+					Slug: "mkg_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Dialog Pages",
+					Slug: "dialog_pages",
+					NodeType: "Dialog",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+			]);
+
+		// Unfold widget container of "SidePanels/KPIs" page
+		getAppManager().unfoldWidgetContainers(["Main Project/SidePanels/KPIs"]);
+
+		// Move cursor away from the page. Move Cursor to "App" header
+		getAppManager()
+			.getAppNavigatorTab()
+			.moveTo();
+
+		// Assert the Styles of App Manager Tree.
+		getAppManager()
+			.getAppManagerStylesInfo()
+			.should.eql([
+				{
+					Name: "Main Project",
+					Slug: "main_project",
+					NodeType: "Pagev2-grid",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveGrey100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite80.rgbaWithWhitespace,
+				},
+				{
+					Name: "home",
+					Slug: "home",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Another Page",
+					Slug: "another_page",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Button Page",
+					Slug: "button_page",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Book Corner",
+					Slug: "wh_subpage",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Test Page",
+					Slug: "test_page",
+					NodeType: "Pagev2-grid",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "SidePanels",
+					Slug: "sidepanels_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Widgets on page",
+					Slug: "sidepanels_1-widget-container",
+					NodeType: "Container",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "KPIs",
+					Slug: "kpis_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: true,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite40.rgbaWithWhitespace,
+				},
+				{
+					Name: "Widgets on page",
+					Slug: "kpis_1-widget-container",
+					NodeType: "Container",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Author",
+					Slug: "Author",
+					NodeType: "Widget",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveGrey100.clear.rgbaWithWhitespace,
+				},
+				{
+					Name: "SelectedBook",
+					Slug: "SelectedBook",
+					NodeType: "Widget",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveGrey100.clear.rgbaWithWhitespace,
+				},
+				{
+					Name: "Filters",
+					Slug: "filters_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Help",
+					Slug: "help_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "StoreFocus",
+					Slug: "storefocus_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "MKG",
+					Slug: "mkg_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Dialog Pages",
+					Slug: "dialog_pages",
+					NodeType: "Dialog",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+			]);
+
+		// Hover onto widgets container of Home page.
+		getAppManager().hoverWidgetContainer({
+			pagePath: "Main Project/SidePanels/KPIs",
+		});
+
+		// Assert the Styles of App Manager Tree.
+		getAppManager()
+			.getAppManagerStylesInfo()
+			.should.eql([
+				{
+					Name: "Main Project",
+					Slug: "main_project",
+					NodeType: "Pagev2-grid",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveGrey100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite80.rgbaWithWhitespace,
+				},
+				{
+					Name: "home",
+					Slug: "home",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Another Page",
+					Slug: "another_page",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Button Page",
+					Slug: "button_page",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Book Corner",
+					Slug: "wh_subpage",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Test Page",
+					Slug: "test_page",
+					NodeType: "Pagev2-grid",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "SidePanels",
+					Slug: "sidepanels_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Widgets on page",
+					Slug: "sidepanels_1-widget-container",
+					NodeType: "Container",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "KPIs",
+					Slug: "kpis_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: true,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite40.rgbaWithWhitespace,
+				},
+				{
+					Name: "Widgets on page",
+					Slug: "kpis_1-widget-container",
+					NodeType: "Container",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite40.rgbaWithWhitespace,
+				},
+				{
+					Name: "Author",
+					Slug: "Author",
+					NodeType: "Widget",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveGrey100.clear.rgbaWithWhitespace,
+				},
+				{
+					Name: "SelectedBook",
+					Slug: "SelectedBook",
+					NodeType: "Widget",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveGrey100.clear.rgbaWithWhitespace,
+				},
+				{
+					Name: "Filters",
+					Slug: "filters_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Help",
+					Slug: "help_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "StoreFocus",
+					Slug: "storefocus_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "MKG",
+					Slug: "mkg_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Dialog Pages",
+					Slug: "dialog_pages",
+					NodeType: "Dialog",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+			]);
+
+		// Hover 'SidePanels/MKG' page.
+		getAppManager().hoverANode({
+			pagePath: "Main Project/SidePanels",
+			widgetName: "Author",
+		});
+
+		// Assert the Styles of App Manager Tree.
+		getAppManager()
+			.getAppManagerStylesInfo()
+			.should.eql([
+				{
+					Name: "Main Project",
+					Slug: "main_project",
+					NodeType: "Pagev2-grid",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveGrey100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite80.rgbaWithWhitespace,
+				},
+				{
+					Name: "home",
+					Slug: "home",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Another Page",
+					Slug: "another_page",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Button Page",
+					Slug: "button_page",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Book Corner",
+					Slug: "wh_subpage",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Test Page",
+					Slug: "test_page",
+					NodeType: "Pagev2-grid",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "SidePanels",
+					Slug: "sidepanels_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Widgets on page",
+					Slug: "sidepanels_1-widget-container",
+					NodeType: "Container",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "KPIs",
+					Slug: "kpis_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: true,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite40.rgbaWithWhitespace,
+				},
+				{
+					Name: "Widgets on page",
+					Slug: "kpis_1-widget-container",
+					NodeType: "Container",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Author",
+					Slug: "Author",
+					NodeType: "Widget",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveGrey100.clear.rgbaWithWhitespace,
+				},
+				{
+					Name: "SelectedBook",
+					Slug: "SelectedBook",
+					NodeType: "Widget",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveGrey100.clear.rgbaWithWhitespace,
+				},
+				{
+					Name: "Filters",
+					Slug: "filters_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Help",
+					Slug: "help_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "StoreFocus",
+					Slug: "storefocus_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "MKG",
+					Slug: "mkg_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Dialog Pages",
+					Slug: "dialog_pages",
+					NodeType: "Dialog",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+			]);
+
+		// Hover 'SidePanels/MKG' page.
+		getAppManager().hoverANode({ pagePath: "Main Project/SidePanels" });
+
+		// Assert the Styles of App Manager Tree.
+		getAppManager()
+			.getAppManagerStylesInfo()
+			.should.eql([
+				{
+					Name: "Main Project",
+					Slug: "main_project",
+					NodeType: "Pagev2-grid",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveGrey100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite80.rgbaWithWhitespace,
+				},
+				{
+					Name: "home",
+					Slug: "home",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Another Page",
+					Slug: "another_page",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Button Page",
+					Slug: "button_page",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Book Corner",
+					Slug: "wh_subpage",
+					NodeType: "Page",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Test Page",
+					Slug: "test_page",
+					NodeType: "Pagev2-grid",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "SidePanels",
+					Slug: "sidepanels_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite40.rgbaWithWhitespace,
+				},
+				{
+					Name: "Widgets on page",
+					Slug: "sidepanels_1-widget-container",
+					NodeType: "Container",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "KPIs",
+					Slug: "kpis_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: true,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite40.rgbaWithWhitespace,
+				},
+				{
+					Name: "Widgets on page",
+					Slug: "kpis_1-widget-container",
+					NodeType: "Container",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Author",
+					Slug: "Author",
+					NodeType: "Widget",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveGrey100.clear.rgbaWithWhitespace,
+				},
+				{
+					Name: "SelectedBook",
+					Slug: "SelectedBook",
+					NodeType: "Widget",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveGrey100.clear.rgbaWithWhitespace,
+				},
+				{
+					Name: "Filters",
+					Slug: "filters_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Help",
+					Slug: "help_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "StoreFocus",
+					Slug: "storefocus_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "MKG",
+					Slug: "mkg_1",
+					NodeType: "Sidepanel",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+				{
+					Name: "Dialog Pages",
+					Slug: "dialog_pages",
+					NodeType: "Dialog",
+					IsNodeSelected: false,
+					ContentsColor: colors.colorPrimitiveWhite100.rgb,
+					BackgroundColor: colors.colorPrimitiveTransparentWhite16.rgbaWithWhitespace,
+				},
+			]);
+	}
+);

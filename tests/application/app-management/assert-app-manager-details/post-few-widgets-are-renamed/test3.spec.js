@@ -1,0 +1,550 @@
+/*!
+ * @AIMMS_FILE=models/PageV2/Vliegtuigjes/Vliegtuigjes.aimms
+ */
+
+scenario(
+	"After renaming few widgets on Sidepanel and Dialog pages at top and child pages, checking for data on App Manager.",
+	() => {
+		loadPage("Main Project/home?_aimms_only_persistence.write=true");
+
+		// Open the App Manager.
+		openAppManager();
+
+		// Renaming a widget on Sidepanel page, with special characters
+		getAppManager()
+			.getFlyoutMenu({
+				pagePath: "Main Project/SidePanels/MKG",
+				widgetName: "SelectedBook_1",
+			})
+			.clickOnRename()
+			.enterName("āæśṣḍ ēr̥ṅṭñḥ ṇṁūīōl̥")
+			.pressKeys([SPECIAL_KEYS.enter]);
+
+		// Renaming another widget
+		getAppManager()
+			.getFlyoutMenu({
+				pagePath: "Main Project/SidePanels/MKG",
+				widgetName: "Charts",
+			})
+			.clickOnRename()
+			.enterName("BarCharts")
+			.pressKeys([SPECIAL_KEYS.enter]);
+
+		getAppManager()
+			.getFlyoutMenu({
+				pagePath: "Main Project/SidePanels",
+				widgetName: "SidePanels",
+			})
+			.clickOnRename()
+			.enterName("BarCharts")
+			.pressKeys([SPECIAL_KEYS.enter]);
+
+		getAppManager()
+			.getFlyoutMenu({
+				pagePath: "Main Project/SidePanels/MKG",
+				widgetName: "SelectedBook_1",
+			})
+			.clickOnRename()
+			.enterName("Test Widget")
+			.pressKeys([SPECIAL_KEYS.enter]);
+
+		getAppManager()
+			.getFlyoutMenu({
+				pagePath: "Main Project/Dialog Pages/Help",
+				widgetName: "BookCoverImage",
+			})
+			.clickOnRename()
+			.enterName("āæśṣḍ ēr̥ṅṭñḥ ṇṁūīōl̥ D'Souzy")
+			.pressKeys([SPECIAL_KEYS.enter]);
+
+		getAppManager()
+			.getFlyoutMenu({
+				pagePath: "Main Project/Dialog Pages/Help",
+				widgetName: "AllSidePanels",
+			})
+			.clickOnRename()
+			.enterName("Reports")
+			.pressKeys([SPECIAL_KEYS.enter]);
+
+		getAppManager()
+			.getFlyoutMenu({
+				pagePath: "Main Project/Dialog Pages",
+				widgetName: "AantalHoofdstukken_1",
+			})
+			.clickOnRename()
+			.enterName("Reports")
+			.pressKeys([SPECIAL_KEYS.enter]);
+
+		getAppManager()
+			.getFlyoutMenu({
+				pagePath: "Main Project/Dialog Pages/Help",
+				widgetName: "BookCoverImage",
+			})
+			.clickOnRename()
+			.enterName("Book Cover Image")
+			.pressKeys([SPECIAL_KEYS.enter]);
+
+		getAppManager()
+			.getAppManagerInfo()
+			.should.eql([
+				{
+					Name: "Main Project",
+					Slug: "main_project",
+					NodeType: "Pagev2-grid",
+					Tooltip: "Main Project",
+					NodeState: "Expanded",
+					Icon: "",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "home",
+					Slug: "home",
+					NodeType: "Page",
+					Tooltip: "home [ Classic Page ]",
+					NodeState: "Collapsed",
+					Icon: "icon-home",
+					IsNodeSelected: true,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Another Page",
+					Slug: "another_page",
+					NodeType: "Page",
+					Tooltip: "Another Page [ Classic Page ]",
+					NodeState: "Collapsed",
+					Icon: "icon-file2",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Button Page",
+					Slug: "button_page",
+					NodeType: "Page",
+					Tooltip: "Button Page [ Classic Page ]",
+					NodeState: "Collapsed",
+					Icon: "icon-file2",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Book Corner",
+					Slug: "wh_subpage",
+					NodeType: "Page",
+					Tooltip: "Book Corner [ Classic Page ]",
+					NodeState: "Collapsed",
+					Icon: "icon-file2",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Test Page",
+					Slug: "test_page",
+					NodeType: "Pagev2-grid",
+					Tooltip: "Test Page [ Page ]",
+					NodeState: "Collapsed",
+					Icon: "icon-grid6",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "SidePanels",
+					Slug: "sidepanels_1",
+					NodeType: "Sidepanel",
+					Tooltip: "SidePanels [ Classic Side Panel ]",
+					NodeState: "Expanded",
+					Icon: "icon-arrow-left7",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Widgets on page",
+					WidgetsCount: "1",
+					Slug: "sidepanels_1-widget-container",
+					NodeType: "Container",
+					Tooltip: "Widgets on page",
+					NodeState: "Expanded",
+					Icon: "aimms-cube2",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "BarCharts (1)",
+					Slug: "SidePanels",
+					NodeType: "Widget",
+					Tooltip: "BarCharts (1) [ Widget ]",
+					WidgetState: "",
+				},
+				{
+					Name: "KPIs",
+					Slug: "kpis_1",
+					NodeType: "Sidepanel",
+					Tooltip: "KPIs [ Classic Side Panel ]",
+					NodeState: "Collapsed",
+					Icon: "icon-arrow-left7",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Filters",
+					Slug: "filters_1",
+					NodeType: "Sidepanel",
+					Tooltip: "Filters [ Classic Side Panel ]",
+					NodeState: "Collapsed",
+					Icon: "icon-arrow-left7",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Help",
+					Slug: "help_1",
+					NodeType: "Sidepanel",
+					Tooltip: "Help [ Classic Side Panel ]",
+					NodeState: "Collapsed",
+					Icon: "icon-arrow-left7",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "StoreFocus",
+					Slug: "storefocus_1",
+					NodeType: "Sidepanel",
+					Tooltip: "StoreFocus [ Classic Side Panel ]",
+					NodeState: "Collapsed",
+					Icon: "icon-arrow-left7",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "MKG",
+					Slug: "mkg_1",
+					NodeType: "Sidepanel",
+					Tooltip: "MKG [ Classic Side Panel ]",
+					NodeState: "Expanded",
+					Icon: "icon-arrow-left7",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Widgets on page",
+					WidgetsCount: "2",
+					Slug: "mkg_1-widget-container",
+					NodeType: "Container",
+					Tooltip: "Widgets on page",
+					NodeState: "Expanded",
+					Icon: "aimms-cube2",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "BarCharts",
+					Slug: "Charts",
+					NodeType: "Widget",
+					Tooltip: "BarCharts [ Widget ]",
+					WidgetState: "",
+				},
+				{
+					Name: "Test Widget",
+					Slug: "SelectedBook_1",
+					NodeType: "Widget",
+					Tooltip: "Test Widget [ Widget ]",
+					WidgetState: "",
+				},
+				{
+					Name: "Dialog Pages",
+					Slug: "dialog_pages",
+					NodeType: "Dialog",
+					Tooltip: "Dialog Pages [ Classic Dialog ]",
+					NodeState: "Expanded",
+					Icon: "icon-popout",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Widgets on page",
+					WidgetsCount: "1",
+					Slug: "dialog_pages-widget-container",
+					NodeType: "Container",
+					Tooltip: "Widgets on page",
+					NodeState: "Expanded",
+					Icon: "aimms-cube2",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Reports (1)",
+					Slug: "AantalHoofdstukken_1",
+					NodeType: "Widget",
+					Tooltip: "Reports (1) [ Widget ]",
+					WidgetState: "",
+				},
+				{
+					Name: "Help",
+					Slug: "help_2",
+					NodeType: "Dialog",
+					Tooltip: "Help [ Classic Dialog ]",
+					NodeState: "Expanded",
+					Icon: "icon-popout",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Widgets on page",
+					WidgetsCount: "2",
+					Slug: "help_2-widget-container",
+					NodeType: "Container",
+					Tooltip: "Widgets on page",
+					NodeState: "Expanded",
+					Icon: "aimms-cube2",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Reports",
+					Slug: "AllSidePanels",
+					NodeType: "Widget",
+					Tooltip: "Reports [ Widget ]",
+					WidgetState: "",
+				},
+				{
+					Name: "Book Cover Image",
+					Slug: "BookCoverImage",
+					NodeType: "Widget",
+					Tooltip: "Book Cover Image [ Widget ]",
+					WidgetState: "",
+				},
+			]);
+
+		// Refresh the page
+		pageRefresh();
+
+		// Open the App Manager. Unfold the renamed Sidepanel and Dialog pages
+		openAppManager().unfoldPageNodes([
+			"Main Project/SidePanels/MKG",
+			"Main Project/Dialog Pages/Help",
+		]);
+
+		openAppManager().unfoldWidgetContainers([
+			"Main Project/SidePanels/MKG",
+			"Main Project/Dialog Pages/Help",
+		]);
+
+		// Assert the info seen on App Manager
+		getAppManager()
+			.getAppManagerInfo()
+			.should.eql([
+				{
+					Name: "Main Project",
+					Slug: "main_project",
+					NodeType: "Pagev2-grid",
+					Tooltip: "Main Project",
+					NodeState: "Expanded",
+					Icon: "",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "home",
+					Slug: "home",
+					NodeType: "Page",
+					Tooltip: "home [ Classic Page ]",
+					NodeState: "Collapsed",
+					Icon: "icon-home",
+					IsNodeSelected: true,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Another Page",
+					Slug: "another_page",
+					NodeType: "Page",
+					Tooltip: "Another Page [ Classic Page ]",
+					NodeState: "Collapsed",
+					Icon: "icon-file2",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Button Page",
+					Slug: "button_page",
+					NodeType: "Page",
+					Tooltip: "Button Page [ Classic Page ]",
+					NodeState: "Collapsed",
+					Icon: "icon-file2",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Book Corner",
+					Slug: "wh_subpage",
+					NodeType: "Page",
+					Tooltip: "Book Corner [ Classic Page ]",
+					NodeState: "Collapsed",
+					Icon: "icon-file2",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Test Page",
+					Slug: "test_page",
+					NodeType: "Pagev2-grid",
+					Tooltip: "Test Page [ Page ]",
+					NodeState: "Collapsed",
+					Icon: "icon-grid6",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "SidePanels",
+					Slug: "sidepanels_1",
+					NodeType: "Sidepanel",
+					Tooltip: "SidePanels [ Classic Side Panel ]",
+					NodeState: "Expanded",
+					Icon: "icon-arrow-left7",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Widgets on page",
+					WidgetsCount: "1",
+					Slug: "sidepanels_1-widget-container",
+					NodeType: "Container",
+					Tooltip: "Widgets on page",
+					NodeState: "Collapsed",
+					Icon: "aimms-cube2",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "KPIs",
+					Slug: "kpis_1",
+					NodeType: "Sidepanel",
+					Tooltip: "KPIs [ Classic Side Panel ]",
+					NodeState: "Collapsed",
+					Icon: "icon-arrow-left7",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Filters",
+					Slug: "filters_1",
+					NodeType: "Sidepanel",
+					Tooltip: "Filters [ Classic Side Panel ]",
+					NodeState: "Collapsed",
+					Icon: "icon-arrow-left7",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Help",
+					Slug: "help_1",
+					NodeType: "Sidepanel",
+					Tooltip: "Help [ Classic Side Panel ]",
+					NodeState: "Collapsed",
+					Icon: "icon-arrow-left7",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "StoreFocus",
+					Slug: "storefocus_1",
+					NodeType: "Sidepanel",
+					Tooltip: "StoreFocus [ Classic Side Panel ]",
+					NodeState: "Collapsed",
+					Icon: "icon-arrow-left7",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "MKG",
+					Slug: "mkg_1",
+					NodeType: "Sidepanel",
+					Tooltip: "MKG [ Classic Side Panel ]",
+					NodeState: "Expanded",
+					Icon: "icon-arrow-left7",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Widgets on page",
+					WidgetsCount: "2",
+					Slug: "mkg_1-widget-container",
+					NodeType: "Container",
+					Tooltip: "Widgets on page",
+					NodeState: "Expanded",
+					Icon: "aimms-cube2",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "BarCharts",
+					Slug: "Charts",
+					NodeType: "Widget",
+					Tooltip: "BarCharts [ Widget ]",
+					WidgetState: "",
+				},
+				{
+					Name: "Test Widget",
+					Slug: "SelectedBook_1",
+					NodeType: "Widget",
+					Tooltip: "Test Widget [ Widget ]",
+					WidgetState: "",
+				},
+				{
+					Name: "Dialog Pages",
+					Slug: "dialog_pages",
+					NodeType: "Dialog",
+					Tooltip: "Dialog Pages [ Classic Dialog ]",
+					NodeState: "Expanded",
+					Icon: "icon-popout",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Widgets on page",
+					WidgetsCount: "1",
+					Slug: "dialog_pages-widget-container",
+					NodeType: "Container",
+					Tooltip: "Widgets on page",
+					NodeState: "Collapsed",
+					Icon: "aimms-cube2",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Help",
+					Slug: "help_2",
+					NodeType: "Dialog",
+					Tooltip: "Help [ Classic Dialog ]",
+					NodeState: "Expanded",
+					Icon: "icon-popout",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Widgets on page",
+					WidgetsCount: "2",
+					Slug: "help_2-widget-container",
+					NodeType: "Container",
+					Tooltip: "Widgets on page",
+					NodeState: "Expanded",
+					Icon: "aimms-cube2",
+					IsNodeSelected: false,
+					NodeHasHiddenIndication: false,
+				},
+				{
+					Name: "Reports",
+					Slug: "AllSidePanels",
+					NodeType: "Widget",
+					Tooltip: "Reports [ Widget ]",
+					WidgetState: "",
+				},
+				{
+					Name: "Book Cover Image",
+					Slug: "BookCoverImage",
+					NodeType: "Widget",
+					Tooltip: "Book Cover Image [ Widget ]",
+					WidgetState: "",
+				},
+			]);
+	}
+);

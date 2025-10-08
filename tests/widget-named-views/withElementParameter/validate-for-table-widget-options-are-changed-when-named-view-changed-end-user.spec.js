@@ -1,0 +1,430 @@
+/*!
+ * @AIMMS_FILE=models/NamedViewsModelWithEP/TransNet.aimms
+ * @WEBUI_MODE=end_user
+ */
+
+scenario(
+	"Validate the table widget when named views are changed from widget header in end user mode",
+	() => {
+		loadPage("Main Project/SecondHome?table-v2=true");
+
+		findWidget("tableWidget")
+			.getWidgetNamedViewButton()
+			.click();
+
+		findWidget("tableWidget")
+			.getNamedViewItem(1)
+			.click();
+
+		findWidget("tableWidget")
+			.getGridValues()
+			.should.be.shallowDeepEqual([
+				[
+					"16.32 ton",
+					"11.73 ton",
+					"11.23 ton",
+					"16.26 ton",
+					"10.36 ton",
+					"16.87 ton",
+					"10.67 ton",
+					"10.11 ton",
+					"19.29 ton",
+					"14.93 ton",
+				],
+			]);
+
+		findWidget("tableWidget")
+			.getWidgetNamedViewButton()
+			.click();
+
+		findWidget("tableWidget")
+			.getNamedViewItem(2)
+			.click();
+
+		findWidget("tableWidget")
+			.getNumberOfBars()
+			.should.be.equal(372);
+
+		findWidget("tableWidget")
+			.getWidgetNamedViewButton()
+			.click();
+
+		findWidget("tableWidget")
+			.getNamedViewItem(3)
+			.click();
+
+		findWidget("tableWidget")
+			.getGridValues()
+			.should.be.shallowDeepEqual([
+				["150.00", "139.00", "167.00"],
+				["153.00", "157.00", "160.00"],
+				["154.00", "162.00", "167.00"],
+				["160.00", "160.00", "154.00"],
+			]);
+
+		findWidget("tableWidget")
+			.getWidgetNamedViewButton()
+			.click();
+
+		findWidget("tableWidget")
+			.getNamedViewItem(4)
+			.click();
+
+		findWidget("tableWidget")
+			.getGridValues()
+			.should.be.shallowDeepEqual([
+				[
+					"4.00",
+					"3.00",
+					"6.00",
+					"4.00",
+					"6.00",
+					"5.00",
+					"4.00",
+					"4.00",
+					"4.00",
+					"6.00",
+					"6.00",
+					"6.00",
+					"4.00",
+					"7.00",
+					"7.00",
+					"4.00",
+					"4.00",
+					"7.00",
+					"5.00",
+					"4.00",
+					"5.00",
+					"5.00",
+					"5.00",
+					"5.00",
+					"7.00",
+					"5.00",
+					"5.00",
+					"5.00",
+					"7.00",
+					"6.00",
+					"5.00",
+				],
+				[
+					"6.00",
+					"7.00",
+					"5.00",
+					"6.00",
+					"5.00",
+					"5.00",
+					"6.00",
+					"5.00",
+					"5.00",
+					"5.00",
+					"4.00",
+					"6.00",
+					"3.00",
+					"6.00",
+					"5.00",
+					"6.00",
+					"6.00",
+					"6.00",
+					"4.00",
+					"4.00",
+					"4.00",
+					"5.00",
+					"3.00",
+					"6.00",
+					"7.00",
+					"4.00",
+					"6.00",
+					"5.00",
+					"7.00",
+					"3.00",
+					"5.00",
+				],
+				[
+					"5.00",
+					"3.00",
+					"6.00",
+					"5.00",
+					"5.00",
+					"5.00",
+					"7.00",
+					"4.00",
+					"3.00",
+					"3.00",
+					"5.00",
+					"5.00",
+					"5.00",
+					"6.00",
+					"6.00",
+					"5.00",
+					"3.00",
+					"6.00",
+					"6.00",
+					"4.00",
+					"3.00",
+					"5.00",
+					"5.00",
+					"6.00",
+					"5.00",
+					"5.00",
+					"6.00",
+					"5.00",
+					"4.00",
+					"6.00",
+					"7.00",
+				],
+				[
+					"15.00",
+					"13.00",
+					"17.00",
+					"15.00",
+					"16.00",
+					"15.00",
+					"17.00",
+					"13.00",
+					"12.00",
+					"14.00",
+					"15.00",
+					"17.00",
+					"12.00",
+					"19.00",
+					"18.00",
+					"15.00",
+					"13.00",
+					"19.00",
+					"15.00",
+					"12.00",
+					"12.00",
+					"15.00",
+					"13.00",
+					"17.00",
+					"19.00",
+					"14.00",
+					"17.00",
+					"15.00",
+					"18.00",
+					"15.00",
+					"17.00",
+				],
+			]);
+
+		findWidget("tableWidget")
+			.getWidgetNamedViewButton()
+			.click();
+
+		findWidget("tableWidget")
+			.getNamedViewItem(5)
+			.click();
+
+		findWidget("tableWidget")
+			.getWidgetActionMenuButton()
+			.click();
+
+		findWidget("tableWidget")
+			.getWidgetActions()
+			.should.beEqualTo([
+				{ title: "(Re)Initialize Input", icon: "aimms-reset", state: "active" },
+				{ title: "Modify Demand", icon: "aimms-reset", state: "active" },
+			]);
+
+		findWidget("tableWidget")
+			.getWidgetNamedViewButton()
+			.click();
+
+		findWidget("tableWidget")
+			.getNamedViewItem(6)
+			.click();
+
+		findWidget("tableWidget")
+			.getGridValues()
+			.should.be.shallowDeepEqual([
+				[
+					"7",
+					"5",
+					"4",
+					"5",
+					"5",
+					"3",
+					"7",
+					"3",
+					"6",
+					"6",
+					"5",
+					"5",
+					"3",
+					"7",
+					"3",
+					"4",
+					"4",
+					"4",
+					"6",
+					"3",
+					"4",
+					"3",
+					"7",
+					"6",
+					"4",
+					"7",
+					"6",
+					"3",
+					"4",
+					"5",
+					"6",
+					"6",
+					"4",
+					"4",
+					"4",
+					"4",
+					"4",
+					"7",
+					"3",
+					"3",
+					"5",
+					"3",
+					"4",
+					"6",
+					"4",
+				],
+				[
+					"6",
+					"5",
+					"7",
+					"4",
+					"3",
+					"5",
+					"6",
+					"6",
+					"4",
+					"3",
+					"5",
+					"4",
+					"3",
+					"7",
+					"6",
+					"5",
+					"5",
+					"5",
+					"4",
+					"5",
+					"7",
+					"3",
+					"5",
+					"5",
+					"3",
+					"4",
+					"7",
+					"5",
+					"7",
+					"4",
+					"5",
+					"4",
+					"7",
+					"4",
+					"6",
+					"4",
+					"5",
+					"7",
+					"6",
+					"4",
+					"5",
+					"4",
+					"7",
+					"5",
+					"5",
+				],
+				[
+					"7",
+					"4",
+					"6",
+					"6",
+					"4",
+					"7",
+					"4",
+					"4",
+					"3",
+					"5",
+					"5",
+					"4",
+					"5",
+					"7",
+					"5",
+					"4",
+					"5",
+					"5",
+					"6",
+					"6",
+					"3",
+					"6",
+					"5",
+					"6",
+					"3",
+					"5",
+					"4",
+					"6",
+					"5",
+					"4",
+					"5",
+					"6",
+					"4",
+					"6",
+					"7",
+					"4",
+					"6",
+					"4",
+					"5",
+					"4",
+					"5",
+					"7",
+					"4",
+					"5",
+					"6",
+				],
+				[
+					"4",
+					"3",
+					"6",
+					"4",
+					"6",
+					"5",
+					"4",
+					"4",
+					"4",
+					"6",
+					"6",
+					"6",
+					"4",
+					"7",
+					"7",
+					"4",
+					"4",
+					"7",
+					"5",
+					"4",
+					"5",
+					"5",
+					"5",
+					"5",
+					"7",
+					"5",
+					"5",
+					"5",
+					"7",
+					"6",
+					"5",
+					"6",
+					"7",
+					"5",
+					"6",
+					"5",
+					"5",
+					"6",
+					"5",
+					"5",
+					"5",
+					"4",
+					"6",
+					"3",
+					"6",
+				],
+			]);
+	}
+);
